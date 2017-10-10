@@ -9,7 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class Verifica extends AppCompatActivity {
-    private final static int CODIGO = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,28 +19,31 @@ public class Verifica extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         mensaje.setText("Hola "+bundle.getString("NOMBRE")+" ¿Aceptas la política de privacidad?");
 
-        final Button acepto = (Button)findViewById(R.id. button);
+        Button acepto = (Button)findViewById(R.id. button);
         Button rechazo = (Button)findViewById(R.id. button3);
+
         acepto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                enviarRespuesta();
+                Intent acepto= new Intent();
+                acepto.putExtra("code", "Política Aceptada");
+                setResult(RESULT_OK, acepto);
+                finish();
             }
         });
         rechazo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                enviarRespuesta();
+                Intent rechazo= new Intent();
+                rechazo.putExtra("code", "Política NO Aceptada");
+                setResult(RESULT_OK, rechazo);
+                finish();
             }
         });
+
     }
 
-    //Metodo
-    public void enviarRespuesta(){
 
-        Intent intent = new Intent(this, AceptaPolitica.class);
-        Bundle bundle = new Bundle();
-        intent.putExtras(bundle);
-        startActivity(intent);
-    }
+
+
 }

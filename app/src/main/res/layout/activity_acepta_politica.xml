@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.zasha.aceptapolitica.AceptaPolitica"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:baselineAligned="false">
 
     <TextView
         android:id="@+id/textView"
@@ -32,4 +33,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Resultado:" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:onClick="salir"
+        android:text="SALIR"
+        android:textAlignment="center" />
 </LinearLayout>

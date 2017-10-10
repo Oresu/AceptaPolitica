@@ -6,8 +6,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class AceptaPolitica extends AppCompatActivity {
+
+    public static final int CODIGO = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,11 +35,25 @@ public class AceptaPolitica extends AppCompatActivity {
         EditText etNombre = (EditText)findViewById(R.id. editText2);//Llamo al campo de texto
         String nombre = etNombre.getText().toString();//Capturo el texto introducido en una variable
 
-        Intent intent = new Intent(this, Verifica.class);
-        Bundle bundle = new Bundle();
+        Intent intent = new Intent(this, Verifica.class);//Actividad de destino
+        Bundle bundle = new Bundle();//Paquete de datos a enviar
 
         bundle.putString("NOMBRE", nombre);
         intent.putExtras(bundle);
-        startActivity(intent);// Ejecuto el activity (intent) Verifica
+        startActivityForResult(intent, CODIGO);// Ejecuto el activity (intent) Verifica
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == RESULT_OK && requestCode == 0){
+            TextView textResultado = (TextView)findViewById(R.id.textView4);
+            textResultado.setText(data.getExtras().getString("code"));
+        }
+    }
+
+
+    //METODO PARA SALIR DE LA APLICACION
+    public void salir(View view){
+        finish();
     }
 }

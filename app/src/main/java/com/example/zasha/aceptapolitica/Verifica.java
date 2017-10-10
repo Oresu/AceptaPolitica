@@ -16,7 +16,7 @@ public class Verifica extends AppCompatActivity {
         setContentView(R.layout.activity_verifica);
 
         TextView mensaje = (TextView)findViewById(R.id. textView3);
-        Bundle bundle = getIntent().getExtras();
+        final Bundle bundle = getIntent().getExtras();
         mensaje.setText("Hola "+bundle.getString("NOMBRE")+" ¿Aceptas la política de privacidad?");
 
         Button acepto = (Button)findViewById(R.id. button);
@@ -26,8 +26,14 @@ public class Verifica extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent acepto= new Intent();
+                //En este if compruebo si el dato enviado en "EDAD" es menor de 18 y si es asi devuelvo el mensaje con restricciones
+                if (Integer.parseInt(bundle.getString("EDAD")) < 18){
+                    acepto.putExtra("code", "Política Aceptada CON RESTRICCIONES");
+                    setResult(RESULT_OK, acepto);
+                    finish();
+                }else{
                 acepto.putExtra("code", "Política Aceptada");
-                setResult(RESULT_OK, acepto);
+                setResult(RESULT_OK, acepto);}
                 finish();
             }
         });

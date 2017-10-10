@@ -35,11 +35,16 @@ public class AceptaPolitica extends AppCompatActivity {
         EditText etNombre = (EditText)findViewById(R.id. editText2);//Llamo al campo de texto
         String nombre = etNombre.getText().toString();//Capturo el texto introducido en una variable
 
+        EditText etEdad = (EditText)findViewById(R.id.etEdad);
+        String edad = etEdad.getText().toString();
+
         Intent intent = new Intent(this, Verifica.class);//Actividad de destino
         Bundle bundle = new Bundle();//Paquete de datos a enviar
 
         bundle.putString("NOMBRE", nombre);
-        intent.putExtras(bundle);
+        bundle.putString("EDAD", edad);
+        intent.putExtras(bundle);//Recojo todos los datos en el paquete bundle
+
         startActivityForResult(intent, CODIGO);// Ejecuto el activity (intent) Verifica
     }
 
